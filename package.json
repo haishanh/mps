@@ -1,0 +1,25 @@
+{
+  "scripts": {
+    "test": "jest"
+  },
+  "name": "@hsjs/mps",
+  "repository": "haishanh/mps",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "files": [
+    "connect.js",
+    "diff.js",
+    "index.js",
+    "store.js",
+    "package.json",
+    "yarn.lock"
+  ],
+  "dependencies": {
+    "immer": "^2.1.5"
+  },
+  "devDependencies": {
+    "expect": "^24.7.1",
+    "jest": "^24.7.1"
+  }
+}
