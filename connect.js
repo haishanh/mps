@@ -7,12 +7,20 @@ const isFunction = func => typeof func === 'function';
 
 function connect(lifecycleFnNames, mapStateToData, { setDataHook }) {
   // eslint-disable-next-line camelcase
-  function __internal__updateData() {
+  function __internal__updateData(fn) {
     const nextData = mapStateToData.call(null, getState(), this.data);
     // referential comparison
     if (this.data !== nextData) {
       // const filtered = nextData;
       const filtered = diff(nextData, this.data);
+
+      // logging
+      if (process.env.NODE_ENV !== 'production') {
+        if (fn) {
+          console.log('action:', fn.name, 'changes:', filtered);
+        }
+      }
+
       this.setData(filtered, () => {
         setDataHook && setDataHook.call(this, filtered);
       });
@@ -22,8 +30,8 @@ function connect(lifecycleFnNames, mapStateToData, { setDataHook }) {
   // eslint-disable-next-line camelcase
   function __internal__subscribeToStore() {
     if (this.unsubscribe) return;
-    this.unsubscribe = subscribe(() => {
-      this.__internal__updateData();
+    this.unsubscribe = subscribe(fn => {
+      this.__internal__updateData(fn);
     });
   }
 

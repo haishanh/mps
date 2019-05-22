@@ -10,16 +10,16 @@ function getState() {
   return state;
 }
 
-function callListeners() {
+function callListeners(fn) {
   for (let i = 0; i < listeners.length; i++) {
-    listeners[i]();
+    listeners[i](fn);
   }
 }
 
 function createAction(fn, shouldCallListeners = true) {
   return () => {
     state = produce(getState(), fn);
-    shouldCallListeners && callListeners();
+    shouldCallListeners && callListeners(fn);
   };
 }
 
