@@ -78,7 +78,8 @@ function connect(lifecycleFnNames, mapStateToData, { setDataHook }) {
     return {
       __internal__updateData,
       __internal__subscribeToStore,
-      ...config
+      ...config,
+      ...injections
     };
   };
 }
