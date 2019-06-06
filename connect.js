@@ -5,7 +5,7 @@ const diff = require('./diff');
 
 const isFunction = func => typeof func === 'function';
 
-function connect(lifecycleFnNames, mapStateToData, { setDataHook }) {
+function connect(lifecycleFnNames, mapStateToData, { setDataHook } = {}) {
   // eslint-disable-next-line camelcase
   function __internal__updateData(fn) {
     const nextData = mapStateToData.call(null, getState(), this.data);
