@@ -2,6 +2,7 @@
 
 const {
   init,
+  dispatch,
   createAction,
   subscribe,
   getState,
@@ -67,5 +68,41 @@ test('store', async () => {
   });
   await a2();
   expect(called).toBe(true);
+  unsubscribe();
+});
+
+test('dispatch', async () => {
+  let unsubscribe;
+  const initialState = {
+    a: 'a',
+    b: {}
+  };
+  init(initialState);
+
+  let count = 0;
+  unsubscribe = subscribe(x => {
+    console.log(x);
+    switch (++count) {
+      case 1:
+        expect(x).toBe('change a');
+        expect(getState().a).toBe('aa');
+        expect(getState().b).toBe(initialState.b);
+        break;
+      case 2:
+        expect(x).toBe('change a again');
+        expect(getState().a).toBe('aaa');
+        expect(getState().b).toBe(initialState.b);
+        break;
+    }
+  });
+
+  dispatch(s => {
+    s.a = 'aa';
+  }, 'change a');
+
+  dispatch(s => {
+    s.a = 'aaa';
+  }, 'change a again');
+
   unsubscribe();
 });

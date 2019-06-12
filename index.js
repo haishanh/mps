@@ -4,6 +4,7 @@ const {
   immer,
   init,
   subscribe,
+  dispatch,
   createAction,
   getState,
   callListeners
@@ -15,6 +16,7 @@ module.exports = {
   immer,
   init,
   subscribe,
+  dispatch,
   createAction,
   getState,
   callListeners,

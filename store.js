@@ -10,17 +10,22 @@ function getState() {
   return state;
 }
 
-function callListeners(fn) {
+function callListeners(actionName) {
   for (let i = 0; i < listeners.length; i++) {
-    listeners[i](fn);
+    listeners[i](actionName);
   }
 }
 
 function createAction(fn, shouldCallListeners = true) {
   return () => {
     state = produce(getState(), fn);
-    shouldCallListeners && callListeners(fn);
+    shouldCallListeners && callListeners(fn.name);
   };
+}
+
+function dispatch(fn, actionName = 'anonymous action') {
+  state = produce(getState(), fn);
+  callListeners(actionName);
 }
 
 function subscribe(listener) {
@@ -40,6 +45,7 @@ module.exports = {
   init,
   subscribe,
   createAction,
+  dispatch,
   getState,
   callListeners
 };
