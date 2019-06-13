@@ -58,8 +58,8 @@ function connect(lifecycleFnNames, mapStateToData, { setDataHook } = {}) {
       // flush state
       this.__internal__updateData();
       // call the original function if there is one
-      if (isFunction(config[onLoad])) {
-        return config[onLoad].apply(this, args);
+      if (isFunction(config[show])) {
+        return config[show].apply(this, args);
       }
     };
 
