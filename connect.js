@@ -1,8 +1,6 @@
-'use strict';
-
-const { subscribe, getState } = require('./store');
+import { subscribe, getState } from './store';
 // const diff = require('./diff');
-const diff = require('./shallowEqualFilter');
+import diff from './shallowEqualFilter';
 
 const isFunction = func => typeof func === 'function';
 
@@ -113,7 +111,4 @@ function connectComponent(a, b) {
   );
 }
 
-module.exports = {
-  connectPage,
-  connectComponent
-};
+export { connectPage, connectComponent };

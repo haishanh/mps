@@ -1,13 +1,16 @@
 {
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "rollup -c"
   },
   "name": "@hsjs/mps",
   "repository": "haishanh/mps",
   "version": "0.2.3",
-  "main": "index.js",
+  "main": "dist/mps.cjs.js",
+  "module": "dist/mps.module.js",
   "license": "MIT",
   "files": [
+    "dist",
     "connect.js",
     "diff.js",
     "shallowEqualFilter.js",
@@ -20,7 +23,14 @@
     "immer": "^2.1.5"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "babel-jest": "^24.8.0",
     "expect": "^24.7.1",
-    "jest": "^24.7.1"
+    "jest": "^24.7.1",
+    "rollup": "^1.15.3",
+    "rollup-plugin-commonjs": "^10.0.0",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-node-resolve": "^5.0.2"
   }
 }

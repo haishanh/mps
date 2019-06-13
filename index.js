@@ -1,19 +1,17 @@
-'use strict';
-
-const {
-  immer,
+import {
+  produce,
   init,
   subscribe,
   dispatch,
   createAction,
   getState,
   callListeners
-} = require('./store');
+} from './store';
 
-const { connectPage, connectComponent } = require('./connect');
+import { connectPage, connectComponent } from './connect';
 
-module.exports = {
-  immer,
+export {
+  produce,
   init,
   subscribe,
   dispatch,

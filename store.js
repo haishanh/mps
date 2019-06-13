@@ -1,7 +1,4 @@
-'use strict';
-
-const immer = require('immer');
-const { produce } = immer;
+import produce from 'immer';
 
 let state;
 let listeners = [];
@@ -40,8 +37,8 @@ function init(initialState) {
   state = initialState;
 }
 
-module.exports = {
-  immer,
+export {
+  produce,
   init,
   subscribe,
   createAction,

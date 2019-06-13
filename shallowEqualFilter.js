@@ -1,5 +1,3 @@
-'use strict';
-
 const hasOwn = Object.prototype.hasOwnProperty;
 
 const is = (x, y) => {
@@ -13,7 +11,7 @@ const is = (x, y) => {
 /**
  * filter out props which are not changed
  */
-function filter(next, prev) {
+export default function filter(next, prev) {
   const collect = {};
   if (is(next, prev)) return collect;
 
@@ -39,5 +37,3 @@ function filter(next, prev) {
   }
   return collect;
 }
-
-module.exports = filter;
