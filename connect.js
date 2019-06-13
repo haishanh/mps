@@ -1,4 +1,4 @@
-import { subscribe, getState } from './store';
+import { subscribe, getState, logger } from './store';
 // const diff = require('./diff');
 import diff from './shallowEqualFilter';
 
@@ -14,11 +14,11 @@ function connect(lifecycleFnNames, mapStateToData, { setDataHook } = {}) {
       const filtered = diff(nextData, this.data);
 
       // logging
-      if (process.env.NODE_ENV !== 'production') {
-        if (actionName) {
-          console.log('action:', actionName, 'changes:', filtered);
-        }
-      }
+      logger &&
+        logger({
+          action: actionName,
+          changed: filtered
+        });
 
       this.setData(filtered, () => {
         setDataHook && setDataHook.call(this, filtered);

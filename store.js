@@ -33,13 +33,16 @@ function subscribe(listener) {
   };
 }
 
-function init(initialState) {
+let logger;
+function init(initialState, _logger) {
   state = initialState;
+  if (_logger) logger = _logger;
 }
 
 export {
   produce,
   init,
+  logger,
   subscribe,
   createAction,
   dispatch,
