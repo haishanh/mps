@@ -4,7 +4,7 @@
   },
   "name": "@hsjs/mps",
   "repository": "haishanh/mps",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "index.js",
   "license": "MIT",
   "files": [
