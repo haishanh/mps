@@ -1,7 +1,8 @@
 'use strict';
 
 const { subscribe, getState } = require('./store');
-const diff = require('./diff');
+// const diff = require('./diff');
+const diff = require('./shallowEqualFilter');
 
 const isFunction = func => typeof func === 'function';
 
