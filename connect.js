@@ -45,7 +45,7 @@ function connect(lifecycleFnNames, mapStateToData, { setDataHook } = {}) {
       // it's not allowed to call setData in Component#created
       if (init !== 'created') {
         // flush state
-        this.__internal__updateData();
+        this.__internal__updateData(this.is + ' ' + init);
       }
       // call the original function if there is one
       if (isFunction(config[init])) {
@@ -55,7 +55,7 @@ function connect(lifecycleFnNames, mapStateToData, { setDataHook } = {}) {
     injections[show] = function(...args) {
       this.__internal__subscribeToStore();
       // flush state
-      this.__internal__updateData();
+      this.__internal__updateData(this.is + ' ' + show);
       // call the original function if there is one
       if (isFunction(config[show])) {
         return config[show].apply(this, args);
