@@ -4,7 +4,12 @@ import diff from './shallowEqualFilter';
 
 const isFunction = func => typeof func === 'function';
 
-function connect(lifecycleFnNames, mapStateToData, { setDataHook } = {}) {
+function connect(
+  lifecycleFnNames,
+  methodsRoot,
+  mapStateToData,
+  { setDataHook } = {}
+) {
   // eslint-disable-next-line camelcase
   function __internal__updateData(actionName) {
     const nextData = mapStateToData.call(null, getState(), this.data);
@@ -37,7 +42,21 @@ function connect(lifecycleFnNames, mapStateToData, { setDataHook } = {}) {
   const { init, show, hide } = lifecycleFnNames;
 
   return config => {
-    const injections = {};
+    let injections;
+    if (methodsRoot) {
+      injections = {
+        [methodsRoot]: {
+          ...config[methodsRoot],
+          __internal__updateData,
+          __internal__subscribeToStore
+        }
+      };
+    } else {
+      injections = {
+        __internal__updateData,
+        __internal__subscribeToStore
+      };
+    }
 
     // lifecycles
     injections[init] = function(...args) {
@@ -75,8 +94,6 @@ function connect(lifecycleFnNames, mapStateToData, { setDataHook } = {}) {
     });
 
     return {
-      __internal__updateData,
-      __internal__subscribeToStore,
       ...config,
       ...injections
     };
@@ -98,6 +115,7 @@ const componentLifecycleFnNames = {
 function connectPage(a, b) {
   return connect(
     pageLifecycleFnNames,
+    undefined,
     a,
     b
   );
@@ -106,6 +124,7 @@ function connectPage(a, b) {
 function connectComponent(a, b) {
   return connect(
     componentLifecycleFnNames,
+    'methods',
     a,
     b
   );
