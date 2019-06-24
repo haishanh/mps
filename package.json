@@ -5,7 +5,7 @@
   },
   "name": "@hsjs/mps",
   "repository": "haishanh/mps",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "main": "dist/mps.cjs.js",
   "module": "dist/mps.module.js",
   "license": "MIT",
