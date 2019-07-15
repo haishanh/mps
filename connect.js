@@ -2,6 +2,16 @@ import { subscribe, getState, logger } from './store';
 // const diff = require('./diff');
 import diff from './shallowEqualFilter';
 
+// lodash isEmpty simplified
+function isEmpty(value) {
+  for (const key in value) {
+    if (hasOwnProperty.call(value, key)) {
+      return false;
+    }
+  }
+  return true;
+}
+
 const isFunction = func => typeof func === 'function';
 
 function connect(
@@ -16,7 +26,8 @@ function connect(
     // referential comparison
     if (this.data !== nextData) {
       // const filtered = nextData;
-      const filtered = diff(nextData, this.data);
+      const filtered = diff(nextData, this.data, collect);
+      if (isEmpty(filtered)) return;
 
       // logging
       logger &&
