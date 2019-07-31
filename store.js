@@ -1,4 +1,4 @@
-import produce from 'immer';
+import produce, * as immer from 'immer';
 
 let state;
 let listeners = [];
@@ -41,6 +41,7 @@ function init(initialState, _logger) {
 
 export {
   produce,
+  immer,
   init,
   logger,
   subscribe,

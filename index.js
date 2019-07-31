@@ -1,5 +1,6 @@
 import {
   produce,
+  immer,
   init,
   subscribe,
   dispatch,
@@ -12,6 +13,7 @@ import { connectPage, connectComponent } from './connect';
 
 export {
   produce,
+  immer,
   init,
   subscribe,
   dispatch,
