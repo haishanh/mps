@@ -32,7 +32,7 @@ function connect(
       // logging
       logger &&
         logger({
-          action: actionName,
+          action: this.is + ' - ' + actionName,
           changed: filtered
         });
 
