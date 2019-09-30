@@ -1,6 +1,7 @@
 import { subscribe, getState, logger } from './store';
-// const diff = require('./diff');
 import diff from './shallowEqualFilter';
+
+const hasOwnProperty = Object.prototype.hasOwnProperty;
 
 // lodash isEmpty simplified
 function isEmpty(value) {
